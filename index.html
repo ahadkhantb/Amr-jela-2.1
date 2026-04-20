@@ -137,6 +137,148 @@
   }
   .stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; letter-spacing: 1px; }
 
+  /* SLIDER SECTION */
+  .slider-section {
+    max-width: 900px;
+    margin: 30px auto 10px;
+    padding: 0 24px;
+  }
+
+  .slider-container {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+  }
+
+  .slider-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    background: linear-gradient(90deg, transparent 0%, var(--gold-dim) 50%, transparent 100%);
+  }
+
+  .slider-slide.active {
+    opacity: 1;
+  }
+
+  .slide-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .slide-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .slide-text .icon {
+    font-size: 24px;
+    animation: pulse 1.5s infinite;
+  }
+
+  .slide-btn {
+    padding: 10px 24px;
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(201, 168, 76, 0.2);
+  }
+
+  .slide-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201, 168, 76, 0.3);
+    color: var(--bg);
+  }
+
+  .slide-btn .arrow {
+    font-size: 18px;
+    transition: transform 0.3s;
+  }
+
+  .slide-btn:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  .slider-nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text3);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .slider-dot.active {
+    background: var(--gold);
+    width: 24px;
+    border-radius: 10px;
+  }
+
+  .slider-dot:hover {
+    background: var(--gold2);
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slider-slide.active .slide-content {
+    animation: slideIn 0.5s ease-out;
+  }
+
   /* TABS */
   .tabs-wrap { padding: 28px 24px 0; max-width: 900px; margin: 0 auto; }
   .tabs {
@@ -299,7 +441,43 @@
     border-top: 1px solid var(--border);
     color: var(--text3); font-size: 12px; letter-spacing: 1px;
   }
-  footer span { color: var(--gold); }
+  
+  .footer-link {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .footer-link:hover {
+    color: var(--text);
+  }
+  
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  
+  .footer-link:hover::after {
+    width: 100%;
+  }
+  
+  footer span {
+    color: #ef4444;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
 
   /* Login Link */
   .admin-link {
@@ -321,6 +499,25 @@
     color: var(--gold);
   }
 
+  @media (max-width: 600px) {
+    .slider-wrapper {
+      height: 100px;
+    }
+    
+    .slide-content {
+      gap: 15px;
+    }
+    
+    .slide-text {
+      font-size: 15px;
+    }
+    
+    .slide-btn {
+      padding: 8px 18px;
+      font-size: 13px;
+    }
+  }
+
   @media (max-width: 520px) {
     .grid { grid-template-columns: 1fr; }
     .hero { padding: 40px 16px 30px; }
@@ -338,6 +535,55 @@
     <div class="stat"><div class="stat-num" id="touristCount">০</div><div class="stat-label">Tourist Spots</div></div>
     <div class="stat"><div class="stat-num" id="mallCount">০</div><div class="stat-label">Shopping Malls</div></div>
     <div class="stat"><div class="stat-num" id="marketCount">০</div><div class="stat-label">Markets & Shops</div></div>
+  </div>
+</div>
+
+<!-- স্লাইডার সেকশন -->
+<div class="slider-section">
+  <div class="slider-container">
+    <div class="slider-wrapper">
+      <!-- Slide 1 -->
+      <div class="slider-slide active">
+        <div class="slide-content">
+          <div class="slide-text">
+            <span class="icon">🛍️</span>
+            আপনার দোকান বা অনলাইন ব্যবসা আমাদের সাইট এ এড করতে
+          </div>
+          <a href="https://wa.me/8801303084089" target="_blank" class="slide-btn">
+            যোগাযোগ করুন <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="slider-slide">
+        <div class="slide-content">
+          <div class="slide-text">
+            <span class="icon">📢</span>
+            আমাদের সাইটে লিস্ট করা থাকবে আপনার দেকান
+          </div>
+          <a href="https://wa.me/8801303084089" target="_blank" class="slide-btn">
+            এড করুন <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="slider-slide">
+        <div class="slide-content">
+          <div class="slide-text">
+            <span class="icon">💼</span>
+            ব্যবসা প্রমোশনের সেরা প্লাটফর্ম
+          </div>
+          <a href="https://wa.me/8801303084089" target="_blank" class="slide-btn">
+            জানুন <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="slider-nav">
+      <button class="slider-dot active" onclick="goToSlide(0)"></button>
+      <button class="slider-dot" onclick="goToSlide(1)"></button>
+      <button class="slider-dot" onclick="goToSlide(2)"></button>
+    </div>
   </div>
 </div>
 
@@ -370,17 +616,18 @@
 </div>
 
 <footer>
-  <p>তৈরি করা হয়েছে সাভারবাসিদের জন্য · Made with <span>♥</span> by <a href="https://t.me/technicalahadde" target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--gold)'">Tech Man 2.O</a> · © 2025</p>
+  <p>তৈরি করা হয়েছে সাভারবাসিদের জন্য · Made with <span>♥</span> by <a href="https://t.me/technicalahadde" target="_blank" class="footer-link">Tech Man 2.O</a> · © 2025</p>
 </footer>
 
 
 <script>
-const typeLabel = { tourist: 'ঘুরার জায়গা', mal: 'শপিং মল', market: 'বাজার ও দোকান' };
+// Type labels and classes
+const typeLabel = { tourist: 'ঘুরার জায়গা', mall: 'শপিং মল', market: 'বাজার ও দোকান' };
 const typeClass = { tourist: 'cat-tourist', mall: 'cat-mall', market: 'cat-market' };
 const badgeClass = { tourist: 'badge-tourist', mall: 'badge-mall', market: 'badge-market' };
 const badgeLabel = { tourist: '🏛️ Tourist', mall: '🛍️ Mall', market: '🛒 Market' };
 
-// Default images for each category (যদি কোনো ইমেজ না থাকে)
+// Default images for each category
 const defaultImages = {
   tourist: 'https://images.unsplash.com/photo-1565967511849-76ed63b1a94b?w=400&h=200&fit=crop',
   mall: 'https://images.unsplash.com/photo-1567449303078-57ad995bd17a?w=400&h=200&fit=crop',
@@ -431,7 +678,6 @@ window.renderPlaces = function() {
   empty.style.display = 'none';
 
   grid.innerHTML = filtered.map(p => {
-    // ইমেজ URL নির্ধারণ
     let imageUrl = p.imageUrl;
     if (!imageUrl) {
       imageUrl = defaultImages[p.type] || 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=400&h=200&fit=crop';
@@ -446,7 +692,7 @@ window.renderPlaces = function() {
       <div class="card-body">
         <div class="card-cat ${getCat(p.type)}">${typeLabel[p.type]}</div>
         <div class="card-name">${p.name || 'Unnamed'}</div>
-        <div class="card-area">📍 ${p.area || 'Dhaka'}</div>
+        <div class="card-area">📍 ${p.area || 'Savar'}</div>
         <div class="card-desc">${p.desc || 'No description available.'}</div>
       </div>
       <div class="card-footer">
@@ -478,8 +724,70 @@ function search(val) {
   window.renderPlaces();
 }
 
+// Slider functionality
+let currentSlide = 0;
+let slideInterval;
+const slides = document.querySelectorAll('.slider-slide');
+const dots = document.querySelectorAll('.slider-dot');
+
+function showSlide(index) {
+  if (!slides.length) return;
+  
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (dots[i]) dots[i].classList.remove('active');
+  });
+  
+  if (slides[index]) {
+    slides[index].classList.add('active');
+    if (dots[index]) dots[index].classList.add('active');
+    currentSlide = index;
+  }
+}
+
+function nextSlide() {
+  if (!slides.length) return;
+  const next = (currentSlide + 1) % slides.length;
+  showSlide(next);
+}
+
+function goToSlide(index) {
+  showSlide(index);
+  resetSlideInterval();
+}
+
+function startSlideInterval() {
+  if (slideInterval) clearInterval(slideInterval);
+  slideInterval = setInterval(nextSlide, 4000);
+}
+
+function resetSlideInterval() {
+  if (slideInterval) clearInterval(slideInterval);
+  startSlideInterval();
+}
+
+// Initialize slider after DOM is loaded
+setTimeout(() => {
+  const slidesRecheck = document.querySelectorAll('.slider-slide');
+  if (slidesRecheck.length > 0) {
+    startSlideInterval();
+    
+    const sliderContainer = document.querySelector('.slider-container');
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mouseenter', () => {
+        if (slideInterval) clearInterval(slideInterval);
+      });
+      
+      sliderContainer.addEventListener('mouseleave', () => {
+        startSlideInterval();
+      });
+    }
+  }
+}, 100);
+
 window.filter = filter;
 window.search = search;
+window.goToSlide = goToSlide;
 
 let checkInterval = setInterval(() => {
   if (window.firebaseReady && window.places) {
